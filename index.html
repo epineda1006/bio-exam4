@@ -58,6 +58,53 @@
 :root[data-theme="light"] :is(.sec, [class*="tc-"], .page, .tabbar) { --sc: var(--sc-l); }
 @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) :is(.sec, [class*="tc-"], .page, .tabbar) { --sc: var(--sc-l); } }
 
+/* Full dye, like the Pathology Lab: when a topic is open, the whole page takes that topic's color. --dc is the dye. Home keeps pink (light) and black (dark). */
+:root[data-sec="division"] { --dc-l: #D0167A; --dc-d: #F2479A; }
+:root[data-sec="meiosis"] { --dc-l: #7048E8; --dc-d: #9A7BF5; }
+:root[data-sec="inherit"] { --dc-l: #2F9E44; --dc-d: #4CC266; }
+:root[data-sec="dna"] { --dc-l: #1C7ED6; --dc-d: #4A9EF0; }
+:root[data-sec="reg"] { --dc-l: #D98A00; --dc-d: #F2A73A; }
+:root[data-sec="biotech"] { --dc-l: #2FA8B2; --dc-d: #5CBEC6; }
+:root[data-sec]:not([data-sec="home"]) {
+  --dc: var(--dc-d);
+  --bg: color-mix(in srgb, var(--dc) 34%, #050505); --bg2: color-mix(in srgb, var(--dc) 16%, #101010); --bg3: color-mix(in srgb, var(--dc) 24%, #0c0c0c);
+  --fg: color-mix(in srgb, var(--dc) 8%, #f6f3f4); --hi: #fff; --dim: color-mix(in srgb, var(--dc) 22%, #cfc8cc);
+  --rule: color-mix(in srgb, var(--dc) 50%, transparent); --faint: color-mix(in srgb, var(--dc) 14%, transparent);
+  --pg: color-mix(in srgb, var(--dc) 50%, #fff);
+  --glass-tint: color-mix(in srgb, var(--dc) 8%, transparent); --rim: color-mix(in srgb, var(--dc) 40%, transparent);
+  --kt: color-mix(in srgb, var(--dc) 55%, #fff);
+  --c-blue: color-mix(in srgb, #64B5FF 75%, #fff); --c-amber: color-mix(in srgb, #FFB340 75%, #fff); --c-teal: color-mix(in srgb, #5AD8E8 75%, #fff); --c-red: color-mix(in srgb, #FF7066 75%, #fff); --c-green: color-mix(in srgb, #5EE08A 75%, #fff);
+  --mom: color-mix(in srgb, #B9A0FF 75%, #fff); --dad: color-mix(in srgb, #FFB340 75%, #fff);
+}
+@media (prefers-color-scheme: light) { :root[data-sec]:not([data-sec="home"]):not([data-theme="dark"]) {
+  --dc: var(--dc-l);
+  --bg: color-mix(in srgb, var(--dc) 24%, #fff); --bg2: color-mix(in srgb, var(--dc) 10%, #fff); --bg3: color-mix(in srgb, var(--dc) 16%, #fff);
+  --fg: color-mix(in srgb, var(--dc) 22%, #141214); --hi: color-mix(in srgb, var(--dc) 45%, #000); --dim: color-mix(in srgb, var(--dc) 30%, #3e383b);
+  --rule: color-mix(in srgb, var(--dc) 40%, transparent); --faint: color-mix(in srgb, var(--dc) 10%, transparent);
+  --pg: color-mix(in srgb, var(--dc) 62%, #000);
+  --glass-tint: color-mix(in srgb, var(--dc) 6%, transparent); --rim: color-mix(in srgb, var(--dc) 30%, transparent);
+  --kt: color-mix(in srgb, var(--dc) 85%, #000);
+  --c-blue: color-mix(in srgb, #0A5FC2 75%, #000); --c-amber: color-mix(in srgb, #A85A00 75%, #000); --c-teal: color-mix(in srgb, #00707E 75%, #000); --c-red: color-mix(in srgb, #C4302B 75%, #000); --c-green: color-mix(in srgb, #1A7F3A 75%, #000);
+  --mom: color-mix(in srgb, #6D3BD1 75%, #000); --dad: color-mix(in srgb, #B05A00 75%, #000); --mom-l: color-mix(in srgb, #6D3BD1 75%, #000); --dad-l: color-mix(in srgb, #A85A00 75%, #000); } }
+:root[data-sec]:not([data-sec="home"])[data-theme="light"] {
+  --dc: var(--dc-l);
+  --bg: color-mix(in srgb, var(--dc) 24%, #fff); --bg2: color-mix(in srgb, var(--dc) 10%, #fff); --bg3: color-mix(in srgb, var(--dc) 16%, #fff);
+  --fg: color-mix(in srgb, var(--dc) 22%, #141214); --hi: color-mix(in srgb, var(--dc) 45%, #000); --dim: color-mix(in srgb, var(--dc) 30%, #3e383b);
+  --rule: color-mix(in srgb, var(--dc) 40%, transparent); --faint: color-mix(in srgb, var(--dc) 10%, transparent);
+  --pg: color-mix(in srgb, var(--dc) 62%, #000);
+  --glass-tint: color-mix(in srgb, var(--dc) 6%, transparent); --rim: color-mix(in srgb, var(--dc) 30%, transparent);
+  --kt: color-mix(in srgb, var(--dc) 85%, #000);
+  --c-blue: color-mix(in srgb, #0A5FC2 75%, #000); --c-amber: color-mix(in srgb, #A85A00 75%, #000); --c-teal: color-mix(in srgb, #00707E 75%, #000); --c-red: color-mix(in srgb, #C4302B 75%, #000); --c-green: color-mix(in srgb, #1A7F3A 75%, #000);
+  --mom: color-mix(in srgb, #6D3BD1 75%, #000); --dad: color-mix(in srgb, #B05A00 75%, #000); --mom-l: color-mix(in srgb, #6D3BD1 75%, #000); --dad-l: color-mix(in srgb, #A85A00 75%, #000); }
+/* Topic color text stays readable on a dyed page */
+:root[data-sec]:not([data-sec="home"]) :is(.sec, [class*="tc-"], .page, .tabbar) { --sc: color-mix(in srgb, var(--sc-d) 75%, #fff); }
+:root[data-sec]:not([data-sec="home"])[data-theme="light"] :is(.sec, [class*="tc-"], .page, .tabbar) { --sc: color-mix(in srgb, var(--sc-l) 75%, #000); }
+@media (prefers-color-scheme: light) { :root[data-sec]:not([data-sec="home"]):not([data-theme="dark"]) :is(.sec, [class*="tc-"], .page, .tabbar) { --sc: color-mix(in srgb, var(--sc-l) 75%, #000); } }
+body, body::before { transition: background-color .45s var(--ease); }
+
+/* Key terms: underlined in the topic's color, like the Pathology Lab */
+.page:not(#home) :is(p, li):not(.vh):not(.vwhy) b { font-weight: 750; color: var(--hi); text-decoration: underline; text-decoration-color: var(--kt, var(--sc)); text-decoration-thickness: 3px; text-underline-offset: 3px; text-decoration-skip-ink: none; }
+
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--text); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background-color .4s var(--ease), color .4s var(--ease); }
@@ -2655,7 +2702,18 @@ function load(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.par
 function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 function fmt(n) { return Number(n).toLocaleString("en-US"); }
 function rnd(a) { return a[Math.floor(Math.random() * a.length)]; }
-function cssv(name, el) { return getComputedStyle(el || root).getPropertyValue(name).trim(); }
+/* Read a color token. Topic pages mix colors with color-mix(), which canvas drawing can't always read, so turn it into plain rgb first. */
+var cssProbe = null;
+function cssRGB(v) {
+  if (v.indexOf("color-mix(") < 0) return v;
+  if (!cssProbe) { cssProbe = document.createElement("i"); cssProbe.style.display = "none"; (document.body || root).appendChild(cssProbe); }
+  cssProbe.style.color = ""; cssProbe.style.color = v;
+  var c = getComputedStyle(cssProbe).color || "";
+  var m = /color\(srgb ([\d.e-]+) ([\d.e-]+) ([\d.e-]+)(?: \/ ([\d.]+))?\)/.exec(c);
+  if (m) return "rgba(" + [m[1], m[2], m[3]].map(function (x) { return Math.round(Math.max(0, Math.min(1, +x)) * 255); }).join(",") + "," + (m[4] || 1) + ")";
+  return /^rgb/.test(c) ? c : v;
+}
+function cssv(name, el) { return cssRGB(getComputedStyle(el || root).getPropertyValue(name).trim()); }
 
 var TOPICS = ["home", "division", "meiosis", "inherit", "dna", "reg", "biotech"];
 var TNAME = { home: "Home", division: "Cell Division", meiosis: "Meiosis", inherit: "Inheritance", dna: "DNA to Traits", reg: "Gene Control", biotech: "Biotech" };
