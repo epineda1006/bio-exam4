@@ -459,6 +459,28 @@ main { padding-bottom: 120px; }
   .lq .tabbar::before, .lq .secnav::before, .lq .iconbtn::before { display: none; }
 }
 @media print { .top, .tabbar { display: none !important; } }
+
+/* ===== Calc quiz ===== */
+[data-sec="calc"], .tc-calc, .tabbar[data-for="calc"] { --sc-d: #FF7A5C; --sc-l: #A8321A; }
+:root[data-sec="calc"] { --dc-l: #E5533D; --dc-d: #FF7A5C; }
+.cp-list { display: grid; gap: 18px; padding-bottom: 40px; }
+.cp { background: var(--bg2); border-radius: 20px; padding: 18px 20px 20px; box-shadow: inset 0 0 0 .5px var(--rule); max-width: 760px; scroll-margin-top: 90px; }
+.cp-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 14px; color: var(--dim); }
+.lvb { font: 700 12px/1 var(--text); letter-spacing: .03em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; color: var(--hi); box-shadow: inset 0 0 0 1.5px var(--sc); }
+.cp[data-lv="2"] .lvb { background: color-mix(in srgb, var(--sc) 22%, transparent); }
+.cp[data-lv="3"] .lvb { background: var(--sc); color: var(--bg); box-shadow: none; }
+.cp-q { margin: 12px 0 0; font-size: 17px; line-height: 1.5; color: var(--hi); max-width: 62ch; }
+.cp .cp-fig { margin-top: 14px; max-width: 400px; }
+.cp-steps { margin: 14px 0 0; padding-left: 24px; display: grid; gap: 8px; max-width: 64ch; }
+.cp-steps li { animation: cpIn .3s var(--ease); }
+.cp-ans { margin: 14px 0 0; padding: 12px 14px; border-radius: 14px; font-weight: 650; color: var(--hi); background: color-mix(in srgb, var(--sc) 18%, transparent); max-width: 64ch; animation: cpIn .3s var(--ease); }
+.cp-ans .lbl { margin-bottom: 4px; }
+.cp-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.cp-btns button { font: 650 15px var(--text); min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 0; cursor: pointer; background: var(--sc); color: var(--bg); touch-action: manipulation; }
+.cp-btns button.ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule); }
+.cp-btns button:focus-visible { outline: 2px solid var(--sc); outline-offset: 2px; }
+@keyframes cpIn { from { opacity: 0; transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .cp-steps li, .cp-ans { animation: none; } }
 </style>
 </head>
 <body>
@@ -472,6 +494,7 @@ main { padding-bottom: 120px; }
     <a class="sec" data-sec="dna" href="#dna"><span class="L">DNA to Traits</span><span class="S">DNA</span><span class="N">4</span></a>
     <a class="sec" data-sec="reg" href="#reg"><span class="L">Gene Control</span><span class="S">Control</span><span class="N">5</span></a>
     <a class="sec" data-sec="biotech" href="#biotech"><span class="L">Biotech</span><span class="S">Biotech</span><span class="N">6</span></a>
+    <a class="sec" data-sec="calc" href="#calc"><span class="L">Calc quiz</span><span class="S">Calc</span><span class="N">Calc</span></a>
   </nav>
   <button class="iconbtn fglass toggle" id="themeBtn" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.1M12 19.1v2.1M2.8 12h2.1M19.1 12h2.1M5.5 5.5l1.5 1.5M17 17l1.5 1.5M5.5 18.5L7 17M17 7l1.5-1.5"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 14.6A7.6 7.6 0 0 1 9.4 4.5a7.7 7.7 0 1 0 10.1 10.1z"/></svg></button>
 </header>
@@ -2277,6 +2300,369 @@ main { padding-bottom: 120px; }
   <div class="gut"><div class="endrow" data-end="biotech/quiz"></div></div>
 </div>
 </section>
+<!-- CALC -->
+<section class="page" id="calc" data-sec="calc" hidden>
+<div class="sub" data-sub="steps">
+  <div class="hero gut">
+    <div class="kicker fade">Calc quiz &middot; <b>Quiz #7</b></div>
+    <h1 class="giant fade" style="--d:.08s">Derivative applications.</h1>
+    <p class="lede fade" style="--d:.16s">Your quiz has one related rates problem and one max/min problem. Learn the recipe here, then practice from easy to hard in the other two tabs.</p>
+    <span class="book fade" style="--d:.2s">MATH C2210 &middot; due Monday 11:59 PM</span>
+    <nav class="jump fade" style="--d:.24s" aria-label="Jump to a part">
+      <button type="button" data-to="cq-tools">1. Derivative tools</button>
+      <button type="button" data-to="cq-rates">2. Related rates</button>
+      <button type="button" data-to="cq-interval">3. Max/min on [a, b]</button>
+      <button type="button" data-to="cq-opt">4. Max/min word problems</button>
+      <button type="button" data-to="cq-day">5. Quiz day checklist</button>
+    </nav>
+  </div>
+
+  <section class="sect gut" id="cq-tools">
+    <div class="kicker rv">Part 1</div>
+    <h2 class="big rv">Derivative tools.</h2>
+    <p class="say rv">Both problem types need just a few derivative rules.</p>
+    <ul class="keys rv">
+      <li><b>Power rule</b>: bring the power down, then subtract 1. x<sup>3</sup> becomes 3x<sup>2</sup>. A number alone becomes 0.</li>
+      <li><b>Fractions</b>: rewrite first. 4/x = 4x<sup>-1</sup>, so its derivative is -4x<sup>-2</sup> = -4/x<sup>2</sup>.</li>
+      <li><b>Product rule</b>: (fg)&prime; = f&prime;g + fg&prime;. You need it for the box problem.</li>
+      <li><b>Chain rule with time</b>: if x changes over time, the derivative of x<sup>2</sup> with respect to t is 2x &middot; dx/dt. Every letter that changes gets its own rate.</li>
+      <li><b>Second derivative</b>: negative means the curve frowns (a max on top). Positive means it smiles (a min at the bottom).</li>
+    </ul>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Every letter that changes wears a backpack. The derivative of x<sup>2</sup> is 2x, and it carries its backpack dx/dt with it. A plain number like 10 has no backpack, so it becomes 0.</p></div>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Product rule: first times d of second, plus second times d of first.</p><p>Frown = top of a hill = max. Smile = bottom of a valley = min.</p></div>
+  </section>
+
+  <section class="sect gut" id="cq-rates">
+    <div class="kicker rv">Part 2 &middot; Problem 1 on the quiz</div>
+    <h2 class="big rv">Related rates.</h2>
+    <p class="say rv">Two things change at the same time and an equation links them. You know how fast one changes. You find how fast the other one changes.</p>
+<figure class="fig narrow rv"><svg viewBox="0 0 380 180" role="img" aria-label="A 10 foot ladder leans on a wall. x is the distance from the wall to the bottom, y is the height of the top." style="max-width:min(437px, calc(72svh * 2.111))">
+  <path class="s-line" d="M60 12 V156 H350"/>
+  <path class="s-acc" d="M60 44 L212 156" style="stroke-width:6"/>
+  <text class="s-t" x="36" y="104">y</text><text class="s-t" x="130" y="174">x</text>
+  <text class="s-ta" x="150" y="92">10 ft</text>
+  <path class="s-line" d="M222 146 h60" marker-end="url(#arr)"/><text class="s-ts" x="226" y="136">moving out</text>
+  <path class="s-line" d="M72 40 v36" marker-end="url(#arr)"/>
+</svg><figcaption>The ladder stays 10 ft long, but x and y both change as it slides.</figcaption></figure>
+    <h3 class="mid rv">The recipe, every time</h3>
+    <ol class="keys rv">
+      <li><b>Draw it</b> and give a letter to everything that changes.</li>
+      <li>Write what you <b>know</b> and what you <b>want</b>, with units. A rate is a d/dt, like dx/dt = 2.</li>
+      <li>Find the <b>equation</b> that links the letters: a shape formula, the Pythagorean theorem or similar triangles.</li>
+      <li>Take <b>d/dt</b> of both sides. Every changing letter gets its backpack.</li>
+      <li><b>Plug in numbers last</b>, then solve for the rate you want.</li>
+    </ol>
+    <div class="ex rv"><span class="lbl">Worked example</span><p>A 10 ft ladder slides away from a wall at 2 ft/s. How fast does the top slide down when the bottom is 6 ft out?</p><ol><li>Know dx/dt = 2. Want dy/dt when x = 6.</li><li>x<sup>2</sup> + y<sup>2</sup> = 100.</li><li>2x &middot; dx/dt + 2y &middot; dy/dt = 0.</li><li>When x = 6, y = 8. So 2(6)(2) + 2(8) &middot; dy/dt = 0.</li><li>dy/dt = <b>-1.5 ft/s</b>. The top falls 1.5 ft every second.</li></ol></div>
+    <h3 class="mid rv">Formulas you'll need</h3>
+    <ul class="keys rv">
+      <li><b>Circle</b>: area A = &pi;r<sup>2</sup>, around the edge C = 2&pi;r.</li>
+      <li><b>Sphere</b> (balloon): V = (4/3)&pi;r<sup>3</sup>.</li>
+      <li><b>Cone</b>: V = (1/3)&pi;r<sup>2</sup>h.</li>
+      <li><b>Cube or square</b>: V = s<sup>3</sup>, A = s<sup>2</sup>.</li>
+      <li><b>Right triangle</b>: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>. Ladders, cars and baseball.</li>
+      <li><b>Similar triangles</b>: same shape, so matching sides make equal fractions. Shadows and cones.</li>
+    </ul>
+<figure class="fig narrow rv"><svg viewBox="0 0 300 250" role="img" aria-label="A cone shaped tank, point down, 10 feet tall with a 4 foot radius at the top. Water is h feet deep with radius r." style="max-width:min(345px, calc(72svh * 1.200))">
+  <path class="s-line" d="M50 30 L150 226 L250 30"/><ellipse cx="150" cy="30" rx="100" ry="12" class="s-line"/>
+  <path d="M100 128 L150 226 L200 128 Z" class="s-accf" opacity=".35"/><ellipse cx="150" cy="128" rx="50" ry="7" class="s-accf" opacity=".5"/>
+  <path class="s-thin" d="M150 30 H250 M150 128 H200 M150 30 V226"/>
+  <text class="s-ts" x="186" y="22">4 ft</text><text class="s-ta" x="166" y="122">r</text>
+  <text class="s-ts" x="262" y="130">10 ft</text><path class="s-thin" d="M258 30 V226"/>
+  <text class="s-ta" x="126" y="184">h</text>
+</svg><figcaption>In a cone, r and h are tied together by similar triangles: r/h = 4/10.</figcaption></figure>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Derive first, plug in last. If you plug in x = 6 before taking d/dt, x turns into a plain number, its backpack falls off and the rate disappears.</p></div>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Shrinking or falling means a negative rate. A ladder top going down: dy/dt is negative.</p><p>Too many letters? Kill the extra one with similar triangles BEFORE taking d/dt (the cone).</p></div>
+    <div class="note warn rv"><span class="lbl">Watch out</span><p>Your answer is a rate, so its units are something per time: ft/s, cm<sup>2</sup>/s, mph.</p><p>Find missing sides (like y = 8) with the plain equation, not the derivative.</p></div>
+  </section>
+
+  <section class="sect gut" id="cq-interval">
+    <div class="kicker rv">Part 3 &middot; Problem 2 on the quiz, type A</div>
+    <h2 class="big rv">Max/min on [a, b].</h2>
+    <p class="say rv">On a closed interval, the biggest and smallest values happen at a flat spot (f&prime; = 0), a sharp spot (f&prime; undefined) or one of the two ends.</p>
+<figure class="fig narrow rv"><svg viewBox="0 0 400 210" role="img" aria-label="A curve on the interval from a to b. The lowest point is where the curve is flat, f prime equals 0. The highest point is at the right end b." style="max-width:min(460px, calc(72svh * 1.905))">
+  <path class="s-thin" d="M20 180 H390"/>
+  <path class="s-thin" d="M70 180 V30 M340 180 V30" stroke-dasharray="4 5"/>
+  <path class="s-acc" d="M70 90 C120 70, 150 150, 200 150 S 300 60, 340 40"/>
+  <circle cx="200" cy="150" r="6" class="s-accf"/><circle cx="340" cy="40" r="6" class="s-accf"/><circle cx="70" cy="90" r="5" class="s-bg2" stroke="var(--cellline)"/>
+  <path class="s-line" d="M170 150 h60"/>
+  <text class="s-t" x="64" y="200">a</text><text class="s-t" x="334" y="200">b</text>
+  <text class="s-ta" x="150" y="172">min: flat, f&prime; = 0</text><text class="s-ta" x="226" y="36">max: at an end</text>
+</svg><figcaption>The min is at a flat spot. The max is at an end. You have to check both kinds.</figcaption></figure>
+    <h3 class="mid rv">The recipe</h3>
+    <ol class="keys rv">
+      <li>Find <b>f&prime;(x)</b>.</li>
+      <li>Set f&prime;(x) = 0 and solve. Also note where f&prime; is undefined. These are the <b>critical points</b>.</li>
+      <li>Keep only critical points <b>inside [a, b]</b>.</li>
+      <li>Make a list: the critical points plus <b>both endpoints</b>.</li>
+      <li>Plug each one into the <b>original f(x)</b>.</li>
+      <li>Biggest output = <b>absolute max</b>. Smallest output = <b>absolute min</b>.</li>
+    </ol>
+    <div class="ex rv"><span class="lbl">Worked example</span><p>f(x) = x<sup>2</sup> - 4x + 1 on [0, 5].</p><ol><li>f&prime;(x) = 2x - 4 = 0, so x = 2.</li><li>Candidates: 0, 2, 5.</li><li>f(0) = 1, f(2) = -3, f(5) = 6.</li><li>Max <b>6 at x = 5</b>. Min <b>-3 at x = 2</b>.</li></ol></div>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Candidates are the critical points and the ends. Then plug into f, not f&prime;. f&prime; is just the map that finds the spots; f gives the heights.</p></div>
+    <div class="note warn rv"><span class="lbl">Watch out</span><p>The answer has two parts: the y value (the max or min) and the x where it happens.</p><p>A critical point outside [a, b] doesn't count. Cross it out.</p></div>
+  </section>
+
+  <section class="sect gut" id="cq-opt">
+    <div class="kicker rv">Part 4 &middot; Problem 2 on the quiz, type B</div>
+    <h2 class="big rv">Max/min word problems.</h2>
+    <p class="say rv">Also called optimization. Something is fixed, like the fence you have, and you want the best result, like the most area.</p>
+<figure class="fig narrow rv"><svg viewBox="0 0 380 200" role="img" aria-label="A rectangle against a straight river. Only three sides need fence: two sides of length x and one side of length y." style="max-width:min(437px, calc(72svh * 1.900))">
+  <rect x="10" y="14" width="360" height="34" rx="6" style="fill:var(--c-blue)" opacity=".28"/><text class="s-ts" x="20" y="36">river (no fence here)</text>
+  <path class="s-acc" d="M70 50 V170 H310 V50"/>
+  <path class="s-thin" d="M70 50 H310" stroke-dasharray="5 5"/>
+  <text class="s-t" x="48" y="116">x</text><text class="s-t" x="320" y="116">x</text><text class="s-t" x="186" y="192">y</text>
+  <text class="s-ta" x="120" y="116">area = xy</text>
+</svg><figcaption>1200 ft of fence for three sides. The river side is free.</figcaption></figure>
+    <h3 class="mid rv">The recipe</h3>
+    <ol class="keys rv">
+      <li><b>Draw it</b> and name the sizes with letters.</li>
+      <li>Write the <b>GOAL</b> equation: the thing to make biggest or smallest.</li>
+      <li>Write the <b>RULE</b> equation: what is fixed.</li>
+      <li>Solve the rule for one letter and <b>substitute</b> so the goal has only one letter.</li>
+      <li>Take the <b>derivative</b>, set it to 0, solve.</li>
+      <li><b>Check</b> it's a max or min: second derivative (frown or smile) or compare with the ends.</li>
+      <li>Answer the <b>exact question</b>, with units. Did they ask for the size, or the area?</li>
+    </ol>
+    <div class="ex rv"><span class="lbl">Worked example</span><p>1200 ft of fence, rectangle along a river, no fence on the river side. Most area?</p><ol><li>RULE: 2x + y = 1200, so y = 1200 - 2x.</li><li>GOAL: A = xy = 1200x - 2x<sup>2</sup>.</li><li>A&prime; = 1200 - 4x = 0, so x = 300.</li><li>A&Prime; = -4, a frown, so it's a max. y = 600.</li><li><b>300 ft by 600 ft</b>, area <b>180,000 ft<sup>2</sup></b>.</li></ol></div>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Two equations: the GOAL and the RULE. Use the rule to cut the goal down to one letter, then take the derivative.</p><p>Smallest distance? Make distance squared smallest instead. Same answer, no square root.</p></div>
+    <div class="note warn rv"><span class="lbl">Watch out</span><p>Write the domain, like 0 &lt; x &lt; 6 for the box. A solution outside it, or one that makes a size 0, gets thrown out.</p></div>
+  </section>
+
+  <section class="sect gut" id="cq-day">
+    <div class="kicker rv">Part 5</div>
+    <h2 class="big rv">Quiz day checklist.</h2>
+    <ul class="keys rv">
+      <li><b>Picture first</b>, every problem. Label the letters.</li>
+      <li><b>Know / Want</b> line with units before any math.</li>
+      <li>Related rates: <b>d/dt before numbers</b>.</li>
+      <li>Max/min on [a, b]: <b>check the endpoints</b>.</li>
+      <li>Word problem: <b>GOAL, RULE, one letter</b>, then check frown or smile.</li>
+      <li>Finish with a <b>sentence and units</b>, then ask: does the sign and size make sense?</li>
+    </ul>
+    <div class="note trick rv"><span class="lbl">Memory trick</span><p>Picture, Know, Equation, Derive, Plug. Say it as "Please Keep Every Derivative Pretty."</p></div>
+  </section>
+</div>
+<div class="sub" data-sub="rates" hidden>
+  <div class="hero gut">
+    <div class="kicker fade">Calc quiz &middot; <b>Related rates</b></div>
+    <h1 class="giant fade" style="--d:.08s">Related rates practice.</h1>
+    <p class="lede fade" style="--d:.16s">Ten problems from easy to hard. Try each one on paper first, then tap Next step to check one step at a time.</p>
+  </div>
+  <div class="gut cp-list">
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Related rates &middot; 1 of 10</span></div>
+      <p class="cp-q">A circle's radius grows at 3 cm/s. How fast is its area growing when r = 5 cm?</p>
+      <ol class="cp-steps"><li hidden>Know: dr/dt = 3. Want: dA/dt when r = 5.</li><li hidden>Equation: A = &pi;r<sup>2</sup>.</li><li hidden>Take d/dt: dA/dt = 2&pi;r &middot; dr/dt.</li><li hidden>Plug in last: dA/dt = 2&pi;(5)(3) = 30&pi;.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dA/dt = 30&pi; &asymp; 94.2 cm<sup>2</sup>/s</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Related rates &middot; 2 of 10</span></div>
+      <p class="cp-q">A square's sides grow at 2 in/s. How fast is its area growing when a side is 6 in?</p>
+      <ol class="cp-steps"><li hidden>Know: ds/dt = 2. Want: dA/dt when s = 6.</li><li hidden>Equation: A = s<sup>2</sup>.</li><li hidden>Take d/dt: dA/dt = 2s &middot; ds/dt.</li><li hidden>Plug in: dA/dt = 2(6)(2) = 24.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dA/dt = 24 in<sup>2</sup>/s</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Related rates &middot; 3 of 10</span></div>
+      <p class="cp-q">A cube's edges grow at 1 cm/s. How fast is its volume growing when an edge is 4 cm?</p>
+      <ol class="cp-steps"><li hidden>Know: ds/dt = 1. Want: dV/dt when s = 4.</li><li hidden>Equation: V = s<sup>3</sup>.</li><li hidden>Take d/dt: dV/dt = 3s<sup>2</sup> &middot; ds/dt.</li><li hidden>Plug in: dV/dt = 3(16)(1) = 48.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dV/dt = 48 cm<sup>3</sup>/s</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Related rates &middot; 4 of 10</span></div>
+      <p class="cp-q">Air is pumped into a round balloon at 100 cm<sup>3</sup>/s. How fast is the radius growing when r = 5 cm?</p>
+      <ol class="cp-steps"><li hidden>Know: dV/dt = 100. Want: dr/dt when r = 5.</li><li hidden>Equation (sphere): V = (4/3)&pi;r<sup>3</sup>.</li><li hidden>Take d/dt: dV/dt = 4&pi;r<sup>2</sup> &middot; dr/dt.</li><li hidden>Plug in: 100 = 4&pi;(25) &middot; dr/dt = 100&pi; &middot; dr/dt.</li><li hidden>Divide: dr/dt = 100 / (100&pi;) = 1/&pi;.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dr/dt = 1/&pi; &asymp; 0.318 cm/s. The bigger the balloon gets, the slower the radius grows.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Related rates &middot; 5 of 10</span></div>
+      <p class="cp-q">A 10 ft ladder leans on a wall. The bottom slides away from the wall at 2 ft/s. How fast is the top sliding down when the bottom is 6 ft from the wall?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 380 180" role="img" aria-label="A 10 foot ladder leans on a wall. x is the distance from the wall to the bottom, y is the height of the top." style="max-width:min(437px, calc(72svh * 2.111))">
+  <path class="s-line" d="M60 12 V156 H350"/>
+  <path class="s-acc" d="M60 44 L212 156" style="stroke-width:6"/>
+  <text class="s-t" x="36" y="104">y</text><text class="s-t" x="130" y="174">x</text>
+  <text class="s-ta" x="150" y="92">10 ft</text>
+  <path class="s-line" d="M222 146 h60" marker-end="url(#arr)"/><text class="s-ts" x="226" y="136">moving out</text>
+  <path class="s-line" d="M72 40 v36" marker-end="url(#arr)"/>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Know: dx/dt = 2. Want: dy/dt when x = 6.</li><li hidden>Equation (right triangle): x<sup>2</sup> + y<sup>2</sup> = 10<sup>2</sup> = 100.</li><li hidden>Take d/dt: 2x &middot; dx/dt + 2y &middot; dy/dt = 0.</li><li hidden>Find the missing side: 36 + y<sup>2</sup> = 100, so y = 8.</li><li hidden>Plug in: 2(6)(2) + 2(8) &middot; dy/dt = 0, so 24 + 16 &middot; dy/dt = 0.</li><li hidden>Solve: dy/dt = -24/16 = -1.5.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dy/dt = -1.5 ft/s. Negative means the top is going down, 1.5 ft every second.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Related rates &middot; 6 of 10</span></div>
+      <p class="cp-q">A 13 ft ladder leans on a wall. The top slides down at 1 ft/s. How fast is the bottom moving away from the wall when the top is 5 ft high?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 380 180" role="img" aria-label="A 10 foot ladder leans on a wall. x is the distance from the wall to the bottom, y is the height of the top." style="max-width:min(437px, calc(72svh * 2.111))">
+  <path class="s-line" d="M60 12 V156 H350"/>
+  <path class="s-acc" d="M60 44 L212 156" style="stroke-width:6"/>
+  <text class="s-t" x="36" y="104">y</text><text class="s-t" x="130" y="174">x</text>
+  <text class="s-ta" x="150" y="92">10 ft</text>
+  <path class="s-line" d="M222 146 h60" marker-end="url(#arr)"/><text class="s-ts" x="226" y="136">moving out</text>
+  <path class="s-line" d="M72 40 v36" marker-end="url(#arr)"/>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Know: dy/dt = -1 (negative because the top goes down). Want: dx/dt when y = 5.</li><li hidden>Equation: x<sup>2</sup> + y<sup>2</sup> = 169.</li><li hidden>Take d/dt: 2x &middot; dx/dt + 2y &middot; dy/dt = 0.</li><li hidden>Find x: x<sup>2</sup> + 25 = 169, so x = 12.</li><li hidden>Plug in: 2(12) &middot; dx/dt + 2(5)(-1) = 0, so 24 &middot; dx/dt = 10.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dx/dt = 10/24 = 5/12 &asymp; 0.417 ft/s, moving away from the wall.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Related rates &middot; 7 of 10</span></div>
+      <p class="cp-q">Two cars leave the same corner. Car A drives north at 60 mph and car B drives east at 25 mph. How fast is the distance between them growing when A is 3 mi north and B is 4 mi east?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 380 230" role="img" aria-label="Two cars leave an intersection, one north and one east. Their distances x and y are the legs of a right triangle and the distance between them z is the long side." style="max-width:min(437px, calc(72svh * 1.652))">
+  <path class="s-thin" d="M60 200 V20 M60 200 H350"/>
+  <path class="s-acc" d="M60 60 L260 200"/>
+  <rect x="50" y="46" width="20" height="28" rx="5" class="s-accf"/><rect x="246" y="190" width="28" height="20" rx="5" class="s-accf"/>
+  <path class="s-line" d="M60 40 v-22" marker-end="url(#arr)"/><text class="s-ts" x="72" y="30">60 mph</text>
+  <path class="s-line" d="M280 200 h40" marker-end="url(#arr)"/><text class="s-ts" x="284" y="190">25 mph</text>
+  <text class="s-t" x="38" y="134">y</text><text class="s-t" x="150" y="222">x</text><text class="s-ta" x="170" y="120">z</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Name it: y = A's distance north, x = B's distance east, z = distance between them.</li><li hidden>Know: dy/dt = 60, dx/dt = 25. Want: dz/dt when x = 4 and y = 3.</li><li hidden>Equation: x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup>.</li><li hidden>Take d/dt and divide by 2: x &middot; dx/dt + y &middot; dy/dt = z &middot; dz/dt.</li><li hidden>Find z: z = &radic;(16 + 9) = 5.</li><li hidden>Plug in: 4(25) + 3(60) = 5 &middot; dz/dt, so 280 = 5 &middot; dz/dt.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dz/dt = 56 mph</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Related rates &middot; 8 of 10</span></div>
+      <p class="cp-q">A baseball diamond is a square, 90 ft on each side. A runner runs from home to first at 24 ft/s. How fast is the runner's distance to second base changing when the runner is halfway to first?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 320 270" role="img" aria-label="Baseball diamond 90 feet on a side. The runner is between home and first. z is the distance from the runner to second base." style="max-width:min(368px, calc(72svh * 1.185))">
+  <path class="s-line" d="M160 248 L260 148 L160 48 L60 148 Z"/>
+  <rect x="152" y="240" width="16" height="16" class="s-bg2" stroke="var(--cellline)" transform="rotate(45 160 248)"/>
+  <circle cx="210" cy="198" r="9" class="s-accf"/>
+  <path class="s-acc" d="M210 198 L160 48"/>
+  <text class="s-ts" x="96" y="262">home</text><text class="s-ts" x="268" y="152">first</text><text class="s-ts" x="172" y="44">second</text>
+  <text class="s-t" x="240" y="186">x</text><text class="s-ta" x="160" y="126">z</text><text class="s-ts" x="214" y="94">90 ft</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Name it: x = runner's distance to first base, z = runner's distance to second base.</li><li hidden>x is shrinking, so dx/dt = -24. Halfway means x = 45.</li><li hidden>The runner, first base and second base make a right triangle with legs x and 90: z<sup>2</sup> = x<sup>2</sup> + 90<sup>2</sup>.</li><li hidden>Take d/dt and divide by 2: z &middot; dz/dt = x &middot; dx/dt.</li><li hidden>Find z: z = &radic;(45<sup>2</sup> + 90<sup>2</sup>) = &radic;10125 &asymp; 100.6.</li><li hidden>Solve: dz/dt = x &middot; dx/dt / z = 45(-24) / 100.6.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dz/dt &asymp; -10.7 ft/s. The distance to second shrinks about 10.7 ft each second.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Related rates &middot; 9 of 10</span></div>
+      <p class="cp-q">A 6 ft tall person walks away from a 15 ft lamppost at 5 ft/s. How fast is their shadow getting longer?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 380 210" role="img" aria-label="A 15 foot lamppost and a 6 foot person. Light from the top of the post passes over the person's head and makes a shadow s on the ground. x is the person's distance from the post." style="max-width:min(437px, calc(72svh * 1.810))">
+  <path class="s-line" d="M20 186 H370"/>
+  <path class="s-line" d="M46 186 V30" style="stroke-width:4"/><circle cx="46" cy="28" r="8" style="fill:var(--c-amber)"/>
+  <path class="s-thin" d="M46 28 L314 186" stroke-dasharray="5 5"/>
+  <path class="s-line" d="M206 186 V122" style="stroke-width:5"/><circle cx="206" cy="114" r="8" class="s-accf"/>
+  <path class="s-acc" d="M206 186 H314" style="stroke-width:7"/>
+  <text class="s-ts" x="54" y="110">15 ft</text><text class="s-ts" x="214" y="160">6 ft</text>
+  <text class="s-t" x="120" y="204">x</text><text class="s-ta" x="254" y="204">s</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Name it: x = distance from the post, s = shadow length. Know: dx/dt = 5. Want: ds/dt.</li><li hidden>Similar triangles: the big one (post) and the small one (person) have the same shape, so 15 / (x + s) = 6 / s.</li><li hidden>Cross multiply: 15s = 6x + 6s, so 9s = 6x, so s = (2/3)x.</li><li hidden>Take d/dt: ds/dt = (2/3) &middot; dx/dt.</li><li hidden>Plug in: ds/dt = (2/3)(5).</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>ds/dt = 10/3 &asymp; 3.33 ft/s, no matter where they are. The tip of the shadow moves 5 + 10/3 &asymp; 8.33 ft/s.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Related rates &middot; 10 of 10</span></div>
+      <p class="cp-q">A cone tank points down. It is 10 ft tall and its top has a 4 ft radius. Water pours in at 2 ft<sup>3</sup>/min. How fast is the water level rising when the water is 5 ft deep?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 300 250" role="img" aria-label="A cone shaped tank, point down, 10 feet tall with a 4 foot radius at the top. Water is h feet deep with radius r." style="max-width:min(345px, calc(72svh * 1.200))">
+  <path class="s-line" d="M50 30 L150 226 L250 30"/><ellipse cx="150" cy="30" rx="100" ry="12" class="s-line"/>
+  <path d="M100 128 L150 226 L200 128 Z" class="s-accf" opacity=".35"/><ellipse cx="150" cy="128" rx="50" ry="7" class="s-accf" opacity=".5"/>
+  <path class="s-thin" d="M150 30 H250 M150 128 H200 M150 30 V226"/>
+  <text class="s-ts" x="186" y="22">4 ft</text><text class="s-ta" x="166" y="122">r</text>
+  <text class="s-ts" x="262" y="130">10 ft</text><path class="s-thin" d="M258 30 V226"/>
+  <text class="s-ta" x="126" y="184">h</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Know: dV/dt = 2. Want: dh/dt when h = 5.</li><li hidden>Equation (cone): V = (1/3)&pi;r<sup>2</sup>h. It has two changing letters, r and h, so get rid of r first.</li><li hidden>Similar triangles: r/h = 4/10, so r = (2/5)h.</li><li hidden>Substitute: V = (1/3)&pi;(4h<sup>2</sup>/25)h = (4&pi;/75)h<sup>3</sup>.</li><li hidden>Take d/dt: dV/dt = (4&pi;/25)h<sup>2</sup> &middot; dh/dt.</li><li hidden>Plug in: 2 = (4&pi;/25)(25) &middot; dh/dt = 4&pi; &middot; dh/dt.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>dh/dt = 1/(2&pi;) &asymp; 0.159 ft/min</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+  </div>
+</div>
+<div class="sub" data-sub="maxmin" hidden>
+  <div class="hero gut">
+    <div class="kicker fade">Calc quiz &middot; <b>Max/min</b></div>
+    <h1 class="giant fade" style="--d:.08s">Max/min practice.</h1>
+    <p class="lede fade" style="--d:.16s">The first four are the [a, b] kind. The rest are word problems. Try first, then tap Next step.</p>
+  </div>
+  <div class="gut cp-list">
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Max/min &middot; 1 of 10</span></div>
+      <p class="cp-q">Find the absolute max and min of f(x) = x<sup>2</sup> - 4x + 1 on [0, 5].</p>
+      <ol class="cp-steps"><li hidden>Derivative: f&prime;(x) = 2x - 4.</li><li hidden>Set it to 0: 2x - 4 = 0, so x = 2. It is inside [0, 5], so keep it.</li><li hidden>Candidates: x = 0, 2 and 5 (the critical point plus both ends).</li><li hidden>Plug into the original f: f(0) = 1, f(2) = 4 - 8 + 1 = -3, f(5) = 25 - 20 + 1 = 6.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>Max is 6 at x = 5. Min is -3 at x = 2.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Max/min &middot; 2 of 10</span></div>
+      <p class="cp-q">Find the absolute max and min of f(x) = x<sup>3</sup> - 3x on [0, 3].</p>
+      <ol class="cp-steps"><li hidden>Derivative: f&prime;(x) = 3x<sup>2</sup> - 3 = 3(x - 1)(x + 1).</li><li hidden>Set it to 0: x = 1 or x = -1. Only x = 1 is inside [0, 3], so throw out -1.</li><li hidden>Candidates: x = 0, 1 and 3.</li><li hidden>Plug in: f(0) = 0, f(1) = 1 - 3 = -2, f(3) = 27 - 9 = 18.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>Max is 18 at x = 3. Min is -2 at x = 1.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="1">
+      <div class="cp-top"><span class="lvb">Easy</span><span>Max/min &middot; 3 of 10</span></div>
+      <p class="cp-q">Find the absolute max and min of f(x) = x<sup>3</sup> - 6x<sup>2</sup> + 9x + 2 on [0, 2].</p>
+      <ol class="cp-steps"><li hidden>Derivative: f&prime;(x) = 3x<sup>2</sup> - 12x + 9 = 3(x - 1)(x - 3).</li><li hidden>Set it to 0: x = 1 or x = 3. Only x = 1 is inside [0, 2].</li><li hidden>Candidates: x = 0, 1 and 2.</li><li hidden>Plug in: f(0) = 2, f(1) = 1 - 6 + 9 + 2 = 6, f(2) = 8 - 24 + 18 + 2 = 4.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>Max is 6 at x = 1. Min is 2 at x = 0.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Max/min &middot; 4 of 10</span></div>
+      <p class="cp-q">Find the absolute max and min of f(x) = x + 4/x on [1, 8].</p>
+      <ol class="cp-steps"><li hidden>Rewrite: 4/x = 4x<sup>-1</sup>, so f&prime;(x) = 1 - 4x<sup>-2</sup> = 1 - 4/x<sup>2</sup>.</li><li hidden>Set it to 0: 4/x<sup>2</sup> = 1, so x<sup>2</sup> = 4 and x = 2 (x = -2 is outside). f&prime; is undefined at x = 0, but 0 is outside too.</li><li hidden>Candidates: x = 1, 2 and 8.</li><li hidden>Plug in: f(1) = 5, f(2) = 2 + 2 = 4, f(8) = 8 + 0.5 = 8.5.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>Max is 8.5 at x = 8. Min is 4 at x = 2.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Max/min &middot; 5 of 10</span></div>
+      <p class="cp-q">Two positive numbers add up to 20. What is the biggest their product can be?</p>
+      <ol class="cp-steps"><li hidden>GOAL (make it biggest): P = xy. RULE (fixed): x + y = 20.</li><li hidden>Use the rule to remove y: y = 20 - x, so P = x(20 - x) = 20x - x<sup>2</sup>.</li><li hidden>Derivative: P&prime; = 20 - 2x. Set it to 0: x = 10.</li><li hidden>Check: P&Prime; = -2, negative, a frown, so x = 10 is a max.</li><li hidden>Then y = 20 - 10 = 10.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>10 and 10, product 100.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Max/min &middot; 6 of 10</span></div>
+      <p class="cp-q">You have 400 ft of fence to make a rectangle. What size gives the most area?</p>
+      <ol class="cp-steps"><li hidden>GOAL: A = xy. RULE: 2x + 2y = 400, so y = 200 - x.</li><li hidden>Substitute: A = x(200 - x) = 200x - x<sup>2</sup>.</li><li hidden>Derivative: A&prime; = 200 - 2x = 0, so x = 100.</li><li hidden>Check: A&Prime; = -2, a frown, so it's a max.</li><li hidden>Then y = 200 - 100 = 100.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>100 ft by 100 ft, area 10,000 ft<sup>2</sup>. With a fixed perimeter, a square always wins.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="2">
+      <div class="cp-top"><span class="lvb">Medium</span><span>Max/min &middot; 7 of 10</span></div>
+      <p class="cp-q">A farmer has 1200 ft of fence for a rectangle along a straight river. The river side needs no fence. What size gives the most area?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 380 200" role="img" aria-label="A rectangle against a straight river. Only three sides need fence: two sides of length x and one side of length y." style="max-width:min(437px, calc(72svh * 1.900))">
+  <rect x="10" y="14" width="360" height="34" rx="6" style="fill:var(--c-blue)" opacity=".28"/><text class="s-ts" x="20" y="36">river (no fence here)</text>
+  <path class="s-acc" d="M70 50 V170 H310 V50"/>
+  <path class="s-thin" d="M70 50 H310" stroke-dasharray="5 5"/>
+  <text class="s-t" x="48" y="116">x</text><text class="s-t" x="320" y="116">x</text><text class="s-t" x="186" y="192">y</text>
+  <text class="s-ta" x="120" y="116">area = xy</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Name it: x = each side touching the river (there are two), y = the side across from the river.</li><li hidden>RULE: only three sides use fence, so 2x + y = 1200 and y = 1200 - 2x.</li><li hidden>GOAL: A = xy = x(1200 - 2x) = 1200x - 2x<sup>2</sup>.</li><li hidden>Derivative: A&prime; = 1200 - 4x = 0, so x = 300.</li><li hidden>Check: A&Prime; = -4, a frown, so it's a max. Then y = 1200 - 600 = 600.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>300 ft by 600 ft, area 180,000 ft<sup>2</sup>.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Max/min &middot; 8 of 10</span></div>
+      <p class="cp-q">A 12 in by 12 in piece of cardboard gets an equal square cut from each corner, then the sides fold up into an open box. What cut size gives the biggest volume?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 430 200" role="img" aria-label="A 12 inch square of cardboard with an x by x square cut from each corner. Folding up the sides makes an open box that is 12 minus 2x wide and x tall." style="max-width:min(494px, calc(72svh * 2.150))">
+  <rect x="20" y="20" width="160" height="160" class="s-bg2" stroke="var(--cellline)" stroke-width="2"/>
+  <path class="s-accf" d="M20 20 h30 v30 h-30 Z M150 20 h30 v30 h-30 Z M20 150 h30 v30 h-30 Z M150 150 h30 v30 h-30 Z" opacity=".55"/>
+  <path class="s-thin" d="M50 50 H150 V150 H50 Z" stroke-dasharray="4 4"/>
+  <text class="s-ta" x="30" y="40">x</text><text class="s-ts" x="80" y="196">12 in</text><text class="s-ts" x="62" y="104">12 - 2x</text>
+  <path class="s-line" d="M196 100 h44" marker-end="url(#arr)"/><text class="s-ts" x="196" y="88">fold up</text>
+  <path class="s-line" d="M270 90 L330 120 L400 90 L340 60 Z M270 90 V140 L330 170 L400 140 V90 M330 120 V170"/>
+  <text class="s-ta" x="406" y="124">x</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>Name it: x = side of each cut square. The base is (12 - 2x) by (12 - 2x) and the height is x. x must be between 0 and 6.</li><li hidden>GOAL: V = x(12 - 2x)<sup>2</sup>.</li><li hidden>Product rule and chain rule: V&prime; = (12 - 2x)<sup>2</sup> + x &middot; 2(12 - 2x)(-2).</li><li hidden>Factor out (12 - 2x): V&prime; = (12 - 2x)(12 - 2x - 4x) = (12 - 2x)(12 - 6x).</li><li hidden>Set it to 0: x = 6 or x = 2. At x = 6 there is no base left (V = 0), so use x = 2.</li><li hidden>Check the ends too: V(0) = 0, V(6) = 0, V(2) = 2(8)<sup>2</sup> = 128. So x = 2 is the max.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>Cut 2 in squares. The box is 8 in by 8 in by 2 in, with volume 128 in<sup>3</sup>.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Max/min &middot; 9 of 10</span></div>
+      <p class="cp-q">Find the point on the curve y = x<sup>2</sup> that is closest to the point (0, 2).</p>
+      <ol class="cp-steps"><li hidden>A point on the curve is (x, x<sup>2</sup>).</li><li hidden>GOAL: the distance to (0, 2). Trick: make distance squared smallest instead. Same winner, no square root. D = (x - 0)<sup>2</sup> + (x<sup>2</sup> - 2)<sup>2</sup>.</li><li hidden>Expand: D = x<sup>2</sup> + x<sup>4</sup> - 4x<sup>2</sup> + 4 = x<sup>4</sup> - 3x<sup>2</sup> + 4.</li><li hidden>Derivative: D&prime; = 4x<sup>3</sup> - 6x = 2x(2x<sup>2</sup> - 3). Set it to 0: x = 0 or x<sup>2</sup> = 3/2.</li><li hidden>Compare: D(0) = 4. When x<sup>2</sup> = 3/2, D = 9/4 - 9/2 + 4 = 7/4, which is smaller.</li><li hidden>So x = &plusmn;&radic;(3/2) &asymp; &plusmn;1.22 and y = x<sup>2</sup> = 1.5.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>The closest points are (1.22, 1.5) and (-1.22, 1.5), about 1.32 away.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+    <article class="cp rv" data-lv="3">
+      <div class="cp-top"><span class="lvb">Hard</span><span>Max/min &middot; 10 of 10</span></div>
+      <p class="cp-q">A soda can must hold 355 cm<sup>3</sup>. What radius and height use the least metal (the smallest surface area)?</p><figure class="fig narrow cp-fig"><svg viewBox="0 0 240 230" role="img" aria-label="A can with radius r and height h." style="max-width:min(276px, calc(72svh * 1.043))">
+  <path class="s-bg2" d="M50 40 V190 A70 14 0 0 0 190 190 V40 Z" stroke="var(--cellline)" stroke-width="2"/>
+  <ellipse cx="120" cy="40" rx="70" ry="14" class="s-accf" opacity=".45"/>
+  <path class="s-acc" d="M120 40 H190"/><text class="s-ta" x="146" y="32">r</text>
+  <path class="s-thin" d="M206 40 V190"/><text class="s-t" x="214" y="120">h</text>
+</svg></figure>
+      <ol class="cp-steps"><li hidden>GOAL: S = 2&pi;r<sup>2</sup> + 2&pi;rh (top and bottom, plus the side). RULE: V = &pi;r<sup>2</sup>h = 355.</li><li hidden>Use the rule to remove h: h = 355 / (&pi;r<sup>2</sup>).</li><li hidden>Substitute: S = 2&pi;r<sup>2</sup> + 2&pi;r &middot; 355/(&pi;r<sup>2</sup>) = 2&pi;r<sup>2</sup> + 710/r.</li><li hidden>Derivative: S&prime; = 4&pi;r - 710/r<sup>2</sup>. Set it to 0: 4&pi;r<sup>3</sup> = 710, so r<sup>3</sup> = 710/(4&pi;) &asymp; 56.5.</li><li hidden>Cube root: r &asymp; 3.84 cm. Then h = 355 / (&pi; &middot; 3.84<sup>2</sup>) &asymp; 7.67 cm.</li><li hidden>Check: S&Prime; = 4&pi; + 1420/r<sup>3</sup>, positive, a smile, so it's a min.</li></ol>
+      <p class="cp-ans" hidden><span class="lbl">Answer</span>r &asymp; 3.84 cm and h &asymp; 7.67 cm (the height is twice the radius). S &asymp; 277.5 cm<sup>2</sup>.</p>
+      <div class="cp-btns"><button type="button" class="cp-next">Next step</button><button type="button" class="cp-all ghost">Show all</button></div>
+    </article>
+  </div>
+</div>
+</section>
 
 </main>
 
@@ -2318,6 +2704,11 @@ main { padding-bottom: 120px; }
   <a href="#reg-try"><svg viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-.8a6 6 0 0 1-4.7-2.3L4.6 15a1.5 1.5 0 0 1 2.3-1.9L9 15.2"/></svg>Try it</a>
   <a href="#reg-practice"><svg viewBox="0 0 24 24"><path d="M5 19l1-4L16 5l3 3L9 18zM14 7l3 3"/></svg>Practice</a>
   <a href="#reg-quiz"><svg viewBox="0 0 24 24"><path d="M10 6.5h10M10 12h10M10 17.5h10M3.8 6.5l1.4 1.4 2.4-2.6M3.8 12l1.4 1.4 2.4-2.6M3.8 17.5l1.4 1.4 2.4-2.6"/></svg>Quiz</a>
+</nav>
+<nav class="tabbar" data-for="calc" aria-label="Calc quiz tabs">
+  <a href="#calc-steps"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.7-1 5.3-1 8 .8 2.7-1.8 5.3-1.8 8-.8V19c-2.7-1-5.3-1-8 .8-2.7-1.8-5.3-1.8-8-.8zM12 6.3v13.5"/></svg>Steps</a>
+  <a href="#calc-rates"><svg viewBox="0 0 24 24"><path d="M5 19L19 5M5 19h6M5 19v-6M14 5h5v5"/></svg>Related rates</a>
+  <a href="#calc-maxmin"><svg viewBox="0 0 24 24"><path d="M3 17c3-9 6-9 9-4s6 4 9-6"/><circle cx="7.6" cy="10.5" r="1.6"/><circle cx="15.8" cy="15.4" r="1.6"/></svg>Max/min</a>
 </nav>
 <nav class="tabbar" data-for="biotech" aria-label="Biotech tabs">
   <a href="#biotech-learn"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.7-1 5.3-1 8 .8 2.7-1.8 5.3-1.8 8-.8V19c-2.7-1-5.3-1-8 .8-2.7-1.8-5.3-1.8-8-.8zM12 6.3v13.5"/></svg>Learn</a>
@@ -2755,7 +3146,8 @@ function cssRGB(v) {
 function cssv(name, el) { return cssRGB(getComputedStyle(el || root).getPropertyValue(name).trim()); }
 
 var TOPICS = ["home", "division", "meiosis", "inherit", "dna", "reg", "biotech"];
-var TNAME = { home: "Home", division: "Cell Division", meiosis: "Meiosis", inherit: "Inheritance", dna: "DNA to Traits", reg: "Gene Control", biotech: "Biotech" };
+var PAGES = TOPICS.concat(["calc"]); /* calc is its own page, outside the bio progress and quizzes */
+var TNAME = { calc: "Calc quiz", home: "Home", division: "Cell Division", meiosis: "Meiosis", inherit: "Inheritance", dna: "DNA to Traits", reg: "Gene Control", biotech: "Biotech" };
 
 /* ---------- Theme ---------- */
 var themeBtn = $("#themeBtn");
@@ -2777,7 +3169,7 @@ $$(".tabbar").forEach(function (b) {
   $$("a", b).forEach(function (a) {
     var s = a.getAttribute("href").split("-")[1];
     a._label = a.textContent.trim();
-    if (t !== "home") PARTS.push({ t: t, s: s, label: a._label });
+    if (t !== "home" && t !== "calc") PARTS.push({ t: t, s: s, label: a._label });
   });
 });
 function partLabel(t, s) { var a = $('.tabbar[data-for="' + t + '"] a[href="#' + t + "-" + s + '"]'); return a ? a._label : s; }
@@ -2786,7 +3178,7 @@ function partLabel(t, s) { var a = $('.tabbar[data-for="' + t + '"] a[href="#' +
 var cur = { t: null, s: null }, depth = 0;
 function parse() {
   var raw = (location.hash || "").replace(/^#/, "").split(/[-\/]/);
-  var t = TOPICS.indexOf(raw[0]) >= 0 ? raw[0] : "home";
+  var t = PAGES.indexOf(raw[0]) >= 0 ? raw[0] : "home";
   var sec = document.getElementById(t);
   var subs = $$(":scope > .sub", sec);
   var s = raw[1] && subs.some(function (x) { return x.dataset.sub === raw[1]; }) ? raw[1] : subs[0].dataset.sub;
@@ -2794,7 +3186,7 @@ function parse() {
 }
 function route() {
   var r = parse(), changed = r.t !== cur.t || r.s !== cur.s;
-  TOPICS.forEach(function (t) { var el = document.getElementById(t); el.hidden = t !== r.t; });
+  PAGES.forEach(function (t) { var el = document.getElementById(t); el.hidden = t !== r.t; });
   r.subs.forEach(function (x) { x.hidden = x.dataset.sub !== r.s; });
   root.dataset.sec = r.t; root.dataset.route = r.t + "/" + r.s;
   $$(".secnav .sec").forEach(function (a) { if (a.dataset.sec === r.t) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -2803,7 +3195,7 @@ function route() {
     $$("a", b).forEach(function (a) { if (a.getAttribute("href") === "#" + r.t + "-" + r.s) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   });
   $("#backBtn").classList.toggle("off", depth === 0 && r.t === "home" && r.s === "start");
-  document.title = r.t === "home" ? "Bio Exam 4" : TNAME[r.t] + ": " + partLabel(r.t, r.s) + " | Bio Exam 4";
+  document.title = r.t === "home" ? "Bio Exam 4" : r.t === "calc" ? "Calc quiz: " + partLabel(r.t, r.s) : TNAME[r.t] + ": " + partLabel(r.t, r.s) + " | Bio Exam 4";
   cur = { t: r.t, s: r.s };
   if (changed) {
     window.scrollTo(0, 0);
@@ -5048,6 +5440,21 @@ $$(".vcard").forEach(function (card) {
 });
 /* Stop any playing video when she moves to another topic or tab */
 window.addEventListener("site:route", function () { $$(".vcard.on").forEach(vidReset); });
+
+
+/* ---------- Calc quiz: reveal steps one at a time ---------- */
+$$(".cp").forEach(function (c) {
+  var steps = $$(".cp-steps li", c), ans = $(".cp-ans", c), nx = $(".cp-next", c), all = $(".cp-all", c), n = steps.length + 1, i = 0;
+  function paint() {
+    steps.forEach(function (li, k) { li.hidden = k >= i; });
+    ans.hidden = i < n;
+    nx.textContent = i >= n ? "Start over" : (i === n - 1 ? "Show answer" : (i === 0 ? "First step" : "Next step"));
+    all.textContent = i >= n ? "Hide all" : "Show all";
+  }
+  nx.addEventListener("click", function () { i = i >= n ? 0 : i + 1; paint(); });
+  all.addEventListener("click", function () { i = i >= n ? 0 : n; paint(); });
+  paint();
+});
 
 /* ===== Start up ===== */
 window.addEventListener("site:route", function () { requestAnimationFrame(function () { sizePads(); watchRv(document); }); });
